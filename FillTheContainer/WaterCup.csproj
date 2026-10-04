@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-    <AssemblyName>WaterCup</AssemblyName>
-    <RootNamespace>WaterCup</RootNamespace>
+		<AssemblyName>WaterCup</AssemblyName>
+		<RootNamespace>WaterCup</RootNamespace>
 
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.360" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CounterStrikeSharp.API" Version="1.0.374" />
+	</ItemGroup>
 
 </Project>

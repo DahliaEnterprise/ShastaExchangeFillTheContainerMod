@@ -7,14 +7,18 @@ namespace WaterCup;
 
 public class WaterCup : BasePlugin
 {
-	public override string ModuleName => "Water Up";
+	public override string ModuleName => "Water Cup";
 	public override string ModuleVersion => "1.0.0";
-	public override string ModuleAuthor => "Shane";
+	public override string ModuleAuthor => "Shane Betz shanebetz86@gmail.com";
 	public override string ModuleDescription => "Water collection game mode.";
 
 	private MapSettings mapSettings = new MapSettings();
 
 	private CupTracker cupTracker = new CupTracker();
+
+	private WaterSpoutText waterSpoutText = new WaterSpoutText();
+	
+	private PlayerCoordinates player_coordinates = new PlayerCoordinates();
 
 	public override void Load(bool hotReload)
 	{
@@ -23,19 +27,50 @@ public class WaterCup : BasePlugin
 		RegisterEventHandler<EventPlayerTeam>(OnPlayerTeam);
 
 		RegisterListener<Listeners.OnMapStart>(OnMapStart);
+		
+		RegisterEventHandler<EventRoundStart>(OnRoundStart);
 
 		StartCupHudTimer();
+		
 	}
 
 	private void OnMapStart(string mapName)
 	{
-		AddTimer(3.0f, () =>
-		{
-			mapSettings.OnMapStart();
+		
+		
+		
+		AddTimer(5.0f, () =>
+			{
+				cupTracker.Clear();
+				
+				mapSettings.OnMapStart();
 
-		},
-		TimerFlags.STOP_ON_MAPCHANGE
+				waterSpoutText.Create();
+
+			},
+			TimerFlags.STOP_ON_MAPCHANGE
 		);
+		
+		AddTimer(5.0f, () =>
+			{
+				player_coordinates.ShowCoordinates();
+			},
+			TimerFlags.REPEAT |
+			TimerFlags.STOP_ON_MAPCHANGE
+		);
+	}
+
+	private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
+	{
+		//Display where the spout is and where the container to fill it is.
+		AddTimer(1.0f, () =>
+		   {
+			   waterSpoutText.Create();
+		   },
+		   TimerFlags.STOP_ON_MAPCHANGE
+		);
+
+		return HookResult.Continue;
 	}
 
 	private void StartCupHudTimer()
@@ -67,8 +102,8 @@ public class WaterCup : BasePlugin
 				cupTracker.ShowCupHud(player);
 			}
 		},
-		TimerFlags.REPEAT |
-		TimerFlags.STOP_ON_MAPCHANGE
+			TimerFlags.REPEAT |
+			TimerFlags.STOP_ON_MAPCHANGE
 		);
 	}
 
@@ -111,7 +146,11 @@ public class WaterCup : BasePlugin
 
 		if(player_object_is_valid == true)
 		{
-			if(player.IsValid == false)
+			if(player == null)
+			{
+				player_object_is_valid = false;
+			}
+			else if(player.IsValid == false)
 			{
 				player_object_is_valid = false;
 			}
@@ -123,10 +162,10 @@ public class WaterCup : BasePlugin
 			int end_delay_window = 5001;
 
 			float delay =
-			Random.Shared.Next(
-				begin_delay_window,
-				end_delay_window
-			) / 1000.0f;
+				Random.Shared.Next(
+					begin_delay_window,
+					end_delay_window
+				) / 1000.0f;
 
 			AddTimer(delay, () =>
 			{
@@ -147,10 +186,16 @@ public class WaterCup : BasePlugin
 				}
 
 			},
-			TimerFlags.STOP_ON_MAPCHANGE
+				TimerFlags.STOP_ON_MAPCHANGE
 			);
 		}
 
 		return HookResult.Continue;
+	}
+
+	public override void Unload(bool hotReload)
+	{
+		waterSpoutText.Remove();
+		cupTracker.Clear();
 	}
 }
