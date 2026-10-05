@@ -1,16 +1,511 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Water Cup</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Water Cup | Counter-Strike 2</title>
+
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			background: #0b0f14;
+			color: #e8edf2;
+			line-height: 1.6;
+		}
+
+		a {
+			color: #5bc0ff;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1100px;
+			margin: auto;
+		}
+
+		header {
+			min-height: 650px;
+			display: flex;
+			align-items: center;
+			background:
+				linear-gradient(
+					rgba(11, 15, 20, 0.75),
+					rgba(11, 15, 20, 0.95)
+				),
+				radial-gradient(
+					circle at center,
+					#12354a 0%,
+					#0b0f14 65%
+				);
+			border-bottom: 1px solid #1e2b36;
+		}
+
+		.hero {
+			padding: 80px 0;
+		}
+
+		.badge {
+			display: inline-block;
+			padding: 6px 12px;
+			border: 1px solid #287aa5;
+			border-radius: 20px;
+			color: #5bc0ff;
+			font-size: 13px;
+			margin-bottom: 20px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		h1 {
+			font-size: clamp(50px, 9vw, 100px);
+			line-height: 0.95;
+			margin-bottom: 25px;
+			color: white;
+		}
+
+		.hero p {
+			max-width: 700px;
+			font-size: 20px;
+			color: #aebbc6;
+			margin-bottom: 35px;
+		}
+
+		.buttons {
+			display: flex;
+			gap: 15px;
+			flex-wrap: wrap;
+		}
+
+		.button {
+			display: inline-block;
+			padding: 13px 22px;
+			border-radius: 5px;
+			background: #168ac1;
+			color: white;
+			font-weight: bold;
+		}
+
+		.button:hover {
+			background: #20a4df;
+			text-decoration: none;
+		}
+
+		.button.secondary {
+			background: transparent;
+			border: 1px solid #40505c;
+		}
+
+		section {
+			padding: 80px 0;
+			border-bottom: 1px solid #1b252d;
+		}
+
+		.section-title {
+			font-size: 34px;
+			margin-bottom: 15px;
+			color: white;
+		}
+
+		.section-description {
+			color: #9caab5;
+			max-width: 750px;
+			margin-bottom: 40px;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			gap: 20px;
+		}
+
+		.card {
+			background: #111820;
+			border: 1px solid #24313b;
+			border-radius: 8px;
+			padding: 25px;
+		}
+
+		.card h3 {
+			color: #5bc0ff;
+			margin-bottom: 10px;
+		}
+
+		.card p {
+			color: #9caab5;
+		}
+
+		.feature-number {
+			font-size: 32px;
+			font-weight: bold;
+			color: #5bc0ff;
+			margin-bottom: 10px;
+		}
+
+		.code {
+			background: #070a0d;
+			border: 1px solid #27343e;
+			border-radius: 8px;
+			padding: 25px;
+			overflow-x: auto;
+			margin-top: 20px;
+		}
+
+		pre {
+			color: #c9d4dc;
+			font-family: Consolas, monospace;
+			font-size: 14px;
+		}
+
+		.status {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			color: #9caab5;
+		}
+
+		.status-dot {
+			width: 9px;
+			height: 9px;
+			border-radius: 50%;
+			background: #38c172;
+		}
+
+		.author {
+			font-size: 18px;
+			color: #c6d0d8;
+		}
+
+		footer {
+			padding: 40px 0;
+			text-align: center;
+			color: #66747e;
+		}
+
+		@media (max-width: 600px) {
+			header {
+				min-height: 550px;
+			}
+
+			.hero {
+				padding: 50px 0;
+			}
+
+			section {
+				padding: 55px 0;
+			}
+
+			.hero p {
+				font-size: 17px;
+			}
+		}
+	</style>
 </head>
 
 <body>
 
-	<h1>Water Cup</h1>
+	<header>
+		<div class="container hero">
 
-	<p>
-		A CounterStrike 2 game mode developed by Shane Betz.
-	</p>
+			<div class="badge">
+				Counter-Strike 2 Game Mode
+			</div>
+
+			<h1>Water Cup</h1>
+
+			<p>
+				A custom Counter-Strike 2 game mode where players
+				work to collect water, transport it, and fill a shared
+				container while fighting to survive.
+			</p>
+
+			<div class="buttons">
+				<a
+					class="button"
+					href="https://github.com/DahliaEnterprise/ShastaExchangeFillTheContainerMod"
+				>
+					View on GitHub
+				</a>
+
+				<a
+					class="button secondary"
+					href="#features"
+				>
+					Explore the Mod
+				</a>
+			</div>
+
+		</div>
+	</header>
+
+
+	<section id="features">
+
+		<div class="container">
+
+			<h2 class="section-title">
+				Features
+			</h2>
+
+			<p class="section-description">
+				Water Cup is being developed as an alternative style of
+				Counter-Strike gameplay focused on movement, objectives,
+				team interaction, and constant player engagement.
+			</p>
+
+			<div class="grid">
+
+				<div class="card">
+					<div class="feature-number">01</div>
+					<h3>Constant Respawning</h3>
+					<p>
+						Players don't permanently leave the action after
+						dying. Players are automatically respawned after
+						a randomized delay.
+					</p>
+				</div>
+
+				<div class="card">
+					<div class="feature-number">02</div>
+					<h3>Water Collection</h3>
+					<p>
+						Players collect water from designated water
+						spouts and carry it in their personal cups.
+					</p>
+				</div>
+
+				<div class="card">
+					<div class="feature-number">03</div>
+					<h3>Shared Objective</h3>
+					<p>
+						Collected water contributes toward the team's
+						shared container objective.
+					</p>
+				</div>
+
+				<div class="card">
+					<div class="feature-number">04</div>
+					<h3>Counter-Strike Combat</h3>
+					<p>
+						The objective takes place inside a familiar
+						Counter-Strike environment where combat remains
+						a major part of the gameplay.
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<section>
+
+		<div class="container">
+
+			<h2 class="section-title">
+				How It Works
+			</h2>
+
+			<p class="section-description">
+				The current gameplay concept revolves around collecting
+				water and delivering it to the team's container.
+			</p>
+
+			<div class="grid">
+
+				<div class="card">
+					<h3>1. Find a Water Spout</h3>
+					<p>
+						Move to one of the designated water collection
+						points around the map.
+					</p>
+				</div>
+
+				<div class="card">
+					<h3>2. Fill Your Cup</h3>
+					<p>
+						Your personal cup stores a limited amount of
+						water that you can carry.
+					</p>
+				</div>
+
+				<div class="card">
+					<h3>3. Transport the Water</h3>
+					<p>
+						Move through the map while carrying your collected
+						water.
+					</p>
+				</div>
+
+				<div class="card">
+					<h3>4. Fill the Container</h3>
+					<p>
+						Deliver the water to the team's container and
+						contribute toward the shared objective.
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<section>
+
+		<div class="container">
+
+			<h2 class="section-title">
+				Installation
+			</h2>
+
+			<p class="section-description">
+				Water Cup is a CounterStrikeSharp plugin for Counter-Strike 2.
+			</p>
+
+			<div class="code">
+
+<pre>
+1. Install CounterStrikeSharp on your CS2 server.
+
+2. Build Water Cup:
+
+dotnet build -c Release
+
+3. Copy the compiled plugin:
+
+bin/Release/net10.0/WaterCup.dll
+
+4. Place it in your CounterStrikeSharp plugins directory:
+
+game/csgo/addons/counterstrikesharp/plugins/WaterCup/
+
+5. Start or restart your CS2 server.
+</pre>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<section>
+
+		<div class="container">
+
+			<h2 class="section-title">
+				Development
+			</h2>
+
+			<p class="section-description">
+				Water Cup is actively being developed. Gameplay systems,
+				map interactions, UI, bots, and objectives are continuing
+				to evolve.
+			</p>
+
+			<div class="grid">
+
+				<div class="card">
+
+					<h3>Technology</h3>
+
+					<p>
+						Counter-Strike 2<br>
+						CounterStrikeSharp<br>
+						C# / .NET 10<br>
+						Source 2
+					</p>
+
+				</div>
+
+				<div class="card">
+
+					<h3>Repository</h3>
+
+					<p>
+						The source code is available on GitHub.
+						Development builds and changes can be followed
+						through the repository.
+					</p>
+
+					<br>
+
+					<a href="https://github.com/DahliaEnterprise/ShastaExchangeFillTheContainerMod">
+						GitHub Repository →
+					</a>
+
+				</div>
+
+				<div class="card">
+
+					<h3>Status</h3>
+
+					<p class="status">
+						<span class="status-dot"></span>
+						Active Development
+					</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<section>
+
+		<div class="container">
+
+			<h2 class="section-title">
+				About
+			</h2>
+
+			<p class="author">
+				Water Cup is developed by <strong>Shane Betz</strong>.
+			</p>
+
+			<p class="section-description">
+				The project is an ongoing Counter-Strike 2 addon experiment
+				exploring alternative objective-based gameplay.
+			</p>
+
+		</div>
+
+	</section>
+
+
+	<footer>
+
+		<div class="container">
+
+			<p>
+				Water Cup · Counter-Strike 2
+			</p>
+
+			<p>
+				Developed by Shane Betz
+			</p>
+
+		</div>
+
+	</footer>
 
 </body>
 </html>
